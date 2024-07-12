@@ -1,8 +1,8 @@
 package com.PratikRestApi.demo;
 
-public class ProdDB implements DB{
+public class DevDB implements DB{
 
     public String getData(){
-        return "prod data";
+        return "Dev data";
     }
 }
