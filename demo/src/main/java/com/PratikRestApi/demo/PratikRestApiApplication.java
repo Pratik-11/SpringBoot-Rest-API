@@ -19,8 +19,6 @@ public class PratikRestApiApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 //		db = new ProdDB();
 
-
-
 		System.out.println(db.getData());
 	}
 }
