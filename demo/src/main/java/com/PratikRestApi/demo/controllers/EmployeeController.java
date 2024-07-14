@@ -7,11 +7,10 @@ package com.PratikRestApi.demo.controllers;
 // DELETE /employees/{id}
 
 import com.PratikRestApi.demo.dto.EmployeeDTO;
+import com.PratikRestApi.demo.services.EmployeeService;
 import jakarta.websocket.server.PathParam;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -19,14 +18,20 @@ import java.util.Date;
 @RestController
 public class EmployeeController {
 
+    private final EmployeeService employeeService;
+
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
+
     @GetMapping(path = "/employees/{id}")
         public EmployeeDTO getEmployees(@PathVariable("id") Long employeeId){
-            return new EmployeeDTO(employeeId, "Pratik", LocalDate.of(2024,1,2), true);
+            return employeeService.getEmployeeById(employeeId);
         }
 
-    @GetMapping(path = "/employees/")
-    public String getData(@PathParam("SortBy") String sortBy){
-        return "Hello" + sortBy;
+    @PostMapping(path = "/employees/")
+    public EmployeeDTO getData(@RequestBody EmployeeDTO employeeDTO){
+        return employeeService.createNewEmployee(EmployeeDTO);
     }
 
 
