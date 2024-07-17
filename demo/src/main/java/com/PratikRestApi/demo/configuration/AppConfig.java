@@ -3,6 +3,7 @@ package com.PratikRestApi.demo.configuration;
 import com.PratikRestApi.demo.DB;
 import com.PratikRestApi.demo.DevDB;
 import com.PratikRestApi.demo.ProdDB;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,5 +21,10 @@ public class AppConfig {
     @ConditionalOnProperty(name = "project.mode", havingValue = "production")
     public DB getProdDBBean(){
         return new ProdDB();
+    }
+
+    @Bean
+    public ModelMapper getModelMapper(){
+        return new ModelMapper();
     }
 }
