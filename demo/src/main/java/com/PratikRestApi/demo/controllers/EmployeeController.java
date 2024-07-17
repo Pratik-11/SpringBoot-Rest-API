@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @RestController
+@RequestMapping(path = "/employees")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -24,14 +25,14 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping(path = "/employees/{id}")
-        public EmployeeDTO getEmployees(@PathVariable("id") Long employeeId){
+    @GetMapping(path = "/{id}")
+        public EmployeeDTO getEmployeeById(@PathVariable("id") Long employeeId){
             return employeeService.getEmployeeById(employeeId);
         }
 
-    @PostMapping(path = "/employees/")
-    public EmployeeDTO getData(@RequestBody EmployeeDTO employeeDTO){
-        return employeeService.createNewEmployee(EmployeeDTO);
+    @PostMapping
+    public EmployeeDTO createNewEmployee(@RequestBody EmployeeDTO employeeDTO){
+        return employeeService.createNewEmployee(employeeDTO);
     }
 
 
