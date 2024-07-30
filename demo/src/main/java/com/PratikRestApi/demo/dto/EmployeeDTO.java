@@ -1,5 +1,6 @@
 package com.PratikRestApi.demo.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ public class EmployeeDTO {
     private Long id;
     private String name;
     private LocalDate dateOfJoining;
+    @JsonProperty("isActive")
     private boolean isActive;
 
 
